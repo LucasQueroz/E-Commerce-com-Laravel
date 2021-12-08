@@ -24,7 +24,13 @@
                         <td>{{ $product->title }}</td>
                         <td>{{ $product->quantidade }}</td>
                         <td>R$ {{ $product->preco }}</td>
-                        <th><a href="/produts/edit/{{ $product->id }}" class="btn btn-info edit-btn"><ion-icon name="create"></ion-icon> Editar</a></th>
+                        <th><a href="/produts/edit/{{ $product->id }}" class="btn btn-info edit-btn"><ion-icon name="create"></ion-icon> Editar</a>
+                            <form action="/produts/{{ $product->id }}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash"></ion-icon> Deletar</button>
+                            </form>
+                        </th>
                     </tr>
                 @endforeach
             </tbody>

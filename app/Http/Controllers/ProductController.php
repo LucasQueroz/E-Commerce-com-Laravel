@@ -8,6 +8,19 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+
+    public function index(){
+        $products = Product::all();
+
+        return view('welcome', ['products' => $products]);
+    }
+
+    public function show($id){
+        $product = Product::findOrFail($id);
+
+        return view('products/show', ['product' => $product]);
+    }
+
     public function create(){
         return view('products/create');
     }
@@ -22,6 +35,12 @@ class ProductController extends Controller
         $product = Product::findOrfail($id);
 
         return view('products.edit', ['product' => $product]);
+    }
+
+    public function destroy($id){
+        Product::findOrFail($id)->delete();
+
+        return redirect('/dashboard')->with('msg', 'Evento excluído com sucesso!');
     }
 
     public function update(Request $request){

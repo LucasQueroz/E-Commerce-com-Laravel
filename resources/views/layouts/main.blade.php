@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/stile.css">
+
     <!--- Fonte do Google --->
     <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
 
@@ -15,27 +18,30 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="collapse navbar-collapse">
-                <a href="/">
-                    <img src="#" alt="">
+            <div class="collapse navbar-collapse" id="navbar">
+                <a href="/" class="navbar-brand">
+                    <img src="/img/logo.png" alt="">
                 </a>
-                <ul>
+                <ul class="navbar-nav">
                     @auth
-                    <li class="nav-item"><a href="/products/create">Cadastrar produtos</a></li>
+                    <li class="nav-item"><a href="/dashboard" class="nav-link">Dashboard</a></li>
+                    <li class="nav-item"><a href="/products/create" class="nav-link">Cadastrar produtos</a></li>
                     <li class="nav-item">
                         <form action="/logout" method="POST">
                             @csrf
                             <a href="/logout"
                             onclick="event.preventDefault()
-                            this.closest('form').submit();">Sair</a>
+                            this.closest('form').submit();" class="nav-link">Sair</a>
                         </form>
                     </li>
                     @endauth
 
                     @guest
-                    <li>
-                        <a href="/login">Entrar</a>
-                        <a href="/register">Cadastrar</a>
+                    <li class="nav-item">
+                        <a href="/login" class="nav-link">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/register" class="nav-link">Cadastrar</a>
                     </li>
                     @endguest
                 </ul>

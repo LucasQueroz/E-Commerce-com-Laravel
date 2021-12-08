@@ -9,5 +9,5 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $dates = ['date'];
+    protected $guarded = []; // Permite que tudo que foi enviado pelo POST possa ser atualizado.
 }

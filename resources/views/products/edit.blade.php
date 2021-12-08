@@ -27,8 +27,8 @@
             <input type="number" class="form-control" id="quantidade" name="quantidade"  value="{{ $product->quantidade }}">
         </div>
         <div class="form-group">
-            <label for="description">Descrição do produto::</label>
-            <input type="text" class="form-control" id="description" name="description"  value="{{ $product->description }}">
+            <label for="description">Descrição do produto:</label>
+            <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?">{{ $product->description }}</textarea>
         </div>
         <input type="submit" class="btn btn-primary" value="Editar Produto">
     </form>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Product;
+use App\models\Categoria;
 
 class ProductController extends Controller
 {
@@ -22,7 +23,13 @@ class ProductController extends Controller
     }
 
     public function create(){
-        return view('products/create');
+        $categorias = Categoria::all();
+
+        return view('products/create', ['categorias' => $categorias]);
+    }
+
+    public function create_category(){
+        return view('products/category');
     }
 
     public function dashboard(){
@@ -70,7 +77,8 @@ class ProductController extends Controller
         $product->preco = $request->preco;
         $product->quantidade = $request->quantidade;
         $product->description = $request->description;
-
+        $product->categoria_id = $request->categoria;
+        
         // Imagem Upload
         if($request->hasFile('image') && $request->file('image')->isValid()){
 
@@ -86,5 +94,15 @@ class ProductController extends Controller
         $product->save();
 
         return redirect('/dashboard')->with('msg', 'Produto criado com sucesso!');
+    }
+
+    public function store_category(Request $request){
+        $categoria = new Categoria;
+
+        $categoria->title = $request->title;
+
+        $categoria->save();
+
+        return redirect('/dashboard')->with('msg', 'Categoria criada com sucesso!');
     }
 }

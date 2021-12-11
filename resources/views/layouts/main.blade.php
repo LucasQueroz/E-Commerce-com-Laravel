@@ -26,6 +26,7 @@
                     @auth
                     <li class="nav-item"><a href="/dashboard" class="nav-link">Dashboard</a></li>
                     <li class="nav-item"><a href="/products/create" class="nav-link">Cadastrar produtos</a></li>
+                    <li class="nav-item"><a href="/products/category" class="nav-link">Cadastrar categoria</a></li>
                     <li class="nav-item">
                         <form action="/logout" method="POST">
                             @csrf

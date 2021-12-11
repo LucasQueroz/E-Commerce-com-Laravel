@@ -7,6 +7,14 @@
         <form action="/produts" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
+            <label for="categoria">Categoria do produto:</label>
+            <select class="form-control" name="categoria" id="categoria">
+                @foreach ($categorias as $categoria)
+                    <option value="{{{ $categoria->id }}}">{{{ $categoria->title }}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label for="image">Imagem do produto:</label>
             <input type="file" id="image" name="image" class="form-control-file">
         </div>

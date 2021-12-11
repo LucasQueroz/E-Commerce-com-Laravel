@@ -12,7 +12,15 @@
         <div id="info-container" class="col-md-6">
             <h1>{{ $product->title }}</h1>
             <p class="event-city">R$ {{ $product->preco }} </p>
-            <a href="">Adicionar ao carrinho</a>
+            <form action="../../cliente/carrinho/{{ $product->id }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                    <label for="quantidade">Quantidade: </label>
+                    <input type="number" class="form-control" id="quantidade" name="quantidade" 
+                        placeholder="1" max="{{ $product->quantidade }}" min="1">
+                </div>
+                <input type="submit" class="btn btn-success" value="Adicionar ao Carrinho">
+            </form>
         </div>
         <div class="col-md-12" id="description-container">
             <h3>Sobre o produto:</h3>

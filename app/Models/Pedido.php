@@ -14,7 +14,7 @@ class Pedido extends Model
     }
 
     // Pertence a muitos produtos
-    public function product(){
+    public function products(){
         return $this->belongsToMany('App\Models\Product');
     }
  

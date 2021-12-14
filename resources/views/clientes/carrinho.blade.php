@@ -6,7 +6,7 @@
     <h1>Carrinho de Compras</h1>
 </div>
 <div class="col-md-10 offset-md-1 dashboard-events-container">
-@if (count($products) > 0 )
+@if (count($produtos->products) > 0 )
         <table class="table">
             <thead>
                 <tr>
@@ -19,21 +19,30 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($products as $product)
+                @foreach($produtos->products as $produto)
                     <tr>
-                        <th scope="row">{{ $loop->index + 1 }}</th>
-                        <td>{{ $product->title }}</td>
-                        <td>{{ $product->quantidade }}</td>
-                        <td>R$ {{ $product->preco }}</td>
-                        <th><a href="/produts/edit/{{ $product->id }}" class="btn btn-info edit-btn"><ion-icon name="create"></ion-icon> Editar</a>
-                            <form action="/produts/{{ $product->id }}}" method="POST">
+                        <td scope="row">{{ $loop->index + 1 }}</td>
+                        <td>{{ $produto->quantidade }}</td>
+                        <td> xxxx </td>
+                        <td> {{ $produto->preco }} </td>
+                        <td> xxxx </td>
+                        <td>
+                            <form action="#" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash"></ion-icon> Deletar</button>
+                                <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash"></ion-icon> Remover</button>
                             </form>
-                        </th>
+                        </td>
                     </tr>
                 @endforeach
+                <tr>
+                    <th scope="col">Total</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col">{{ $produtos->valor_total }}</th>
+                    <th scope="col"></th>
+                </tr>
             </tbody>
         </table>
     @else

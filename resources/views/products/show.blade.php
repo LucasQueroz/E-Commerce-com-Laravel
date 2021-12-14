@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label for="quantidade">Quantidade: </label>
                     <input type="number" class="form-control" id="quantidade" name="quantidade" 
-                        placeholder="1" max="{{ $product->quantidade }}" min="1">
+                        value="1" max="{{ $product->quantidade }}" min="1">
                 </div>
                 <input type="submit" class="btn btn-success" value="Adicionar ao Carrinho">
             </form>

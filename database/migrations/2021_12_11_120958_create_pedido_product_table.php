@@ -16,6 +16,7 @@ class CreatePedidoProductTable extends Migration
         Schema::create('pedido_product', function (Blueprint $table) {
             $table->foreignId('pedido_id')->constrained();
             $table->foreignId('product_id')->constrained();
+            $table->integer('quantidade');
             $table->timestamps();
         });
     }

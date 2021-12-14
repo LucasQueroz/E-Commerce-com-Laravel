@@ -44,5 +44,9 @@
                 </x-jet-button>
             </div>
         </form>
+        <div>
+            <p>Ainda não tem conta?</p>
+            <a href="/register">CADASTRE-SE AGORA MESMO</a>
+        </div>
     </x-jet-authentication-card>
 </x-guest-layout>

@@ -30,6 +30,7 @@ Route::get('/products/show/{id}', [ProductController::class, 'show']);
 
 // Rota do carrinho de compra
 Route::post('cliente/carrinho/{id}', [CarrinhoController::class, 'add'])->middleware('auth');
+Route::post('cliente/carrinho/delete/{id}', [CarrinhoController::class, 'delete'])->middleware('auth');
 
 /*Route::get('/', function () {
     return view('welcome');

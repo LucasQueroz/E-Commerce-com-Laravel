@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Pedido;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class CarrinhoController extends Controller
 {
@@ -15,7 +16,7 @@ class CarrinhoController extends Controller
         $pedido = new Pedido;
 
         $pedido->user_id = $user->id;
-        $pedido->valor_total = $product->preco * $request->quantidade;
+        //$pedido->valor_total = $product->preco * $request->quantidade;
         
         if(count(Pedido::where([['user_id', '=', $user->id], 
         ['status', '=', 'Reservado']])->get()->toArray()) == 0){
@@ -29,13 +30,12 @@ class CarrinhoController extends Controller
         
         $pedido->products()->attach($id, ['quantidade' => $request->quantidade]);
 
-        //dd();
+        $pedidoProducts = DB::table('pedido_product')
+        ->select('pedido_product.quantidade as quantidade', 'products.preco as preco', 'products.title as title', 'pedido_product.id as id')
+        ->where('pedido_id', '=', $pedido->id)
+        ->join('products', 'products.id', '=', 'pedido_product.product_id')->get();
         
-        //$pedidos = Pedido::where([['user_id', '=', $user->id], ['status', '=', 'Reservado']])->get();
-        $produtos = Pedido::with(['products', 'pedido_product'])->find($pedido->id);
-
-        //dd($produtos);
-        
-        return view('/clientes/carrinho', ['produtos' => $produtos])->with('msg', 'Produto adicionado ao carrinho do id=');;
+        return view('/clientes/carrinho', ['pedidoProducts' => $pedidoProducts])->with('msg', 'Produto adicionado ao carrinho do id=');
     }
+
 }

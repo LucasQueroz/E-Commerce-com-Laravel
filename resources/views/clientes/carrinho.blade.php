@@ -6,7 +6,7 @@
     <h1>Carrinho de Compras</h1>
 </div>
 <div class="col-md-10 offset-md-1 dashboard-events-container">
-@if (count($produtos->products) > 0 )
+@if (count($pedidoProducts) > 0 )
         <table class="table">
             <thead>
                 <tr>
@@ -19,15 +19,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($produtos->products as $produto)
+                @foreach($pedidoProducts as $pedidoProduct)
                     <tr>
                         <td scope="row">{{ $loop->index + 1 }}</td>
-                        <td>{{ $produto->quantidade }}</td>
-                        <td> xxxx </td>
-                        <td> {{ $produto->preco }} </td>
-                        <td> xxxx </td>
+                        <td>{{ $pedidoProduct->title }}</td>
+                        <td>{{ $pedidoProduct->quantidade }}</td>
+                        <td>{{ $pedidoProduct->preco }}</td>
+                        <td>{{ $pedidoProduct->preco * $pedidoProduct->quantidade }}</td>
                         <td>
-                            <form action="#" method="POST">
+                            <form action="cliente/carrinho/delete/{{ $pedidoProduct->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash"></ion-icon> Remover</button>
@@ -36,13 +36,6 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <th scope="col">Total</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col">{{ $produtos->valor_total }}</th>
-                    <th scope="col"></th>
-                </tr>
             </tbody>
         </table>
     @else
